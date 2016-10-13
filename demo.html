@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple Zoom Demo</title>
+  <link rel="stylesheet" href="simple-zoom/simple-zoom.css">
+</head>
+
+<body>
+  <figure class="simple-zoom">
+    <figure></figure>
+  </figure>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="simple-zoom/simple-zoom.js"></script>
+  <script>
+    $( '.simple-zoom' ).simpleZoom({
+      touch: true
+    });
+  </script>
+</body>
+
+</html>
