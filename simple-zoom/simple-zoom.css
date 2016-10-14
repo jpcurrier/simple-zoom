@@ -1,8 +1,6 @@
 /* simple zoom */
 .simple-zoom{
 	position: relative;
-	width: 500px;
-	height: 500px;
 	margin: 0;
 	background-size: cover;
 }
@@ -22,10 +20,4 @@
 }
 .simple-zoom > figure:hover{
 	opacity: 1;
-}
-
-/* temp: */
-.simple-zoom{
-	height: auto;
-	padding-top: 100%;
 }

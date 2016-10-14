@@ -13,7 +13,7 @@ Include jQuery (1.7+) and the Simple Zoom plugin files.
 <script src="simple-zoom/simple-zoom.js"></script>
 ```
 
-Insert an element classified `simple-zoom` and apply the image that you want to zoom as its `background-image`. This will be used as the initial, "un-zoomed" version of the image, so a smaller version of the image can be used if desired. Inside of that element, include a `figure` element to take the fully zoomed image as its `background-image`.
+Insert an element classified `simple-zoom` and apply the image that you want to zoom as its `background-image`. This will be used as the initial, "un-zoomed" version of the image, so a smaller version of the image can be used if desired. Inside of that element, include a `figure` element and apply the fully zoomed image as its `background-image`.
 
 ```html
 <figure class="simple-zoom" style="background-image: url( img/zoom.png );">
@@ -39,12 +39,12 @@ There is only one setting: `touch`. If set `true`, the zooming functionality wor
 
 ## Scaling Image Elements
 
-Note: this is a general trick, not one particular to this plugin. But, it may be relevant, and can be used on the `simple-zoom` element to achieve the results outlined below.
+Note: the following is a general trick, not particular to this plugin. But, it may be relevant, and can be used on the `simple-zoom` element to achieve the results outlined below.
 
-If non-`<img>` tags (like `<figure>`s) need to scale dynamically with window resizing, like responsive `<img>` elements do (which scale `width` and `height` proportionally), a `padding` trick can be used in lieu of writing tedious incremental `media-query` breaks.
+If non-`<img>` tags (like `<figure>`s) need to scale proportionally as they resize, like responsive `<img>` elements do (which scale their `width` and `height` proportionally), a `padding` trick can be used in lieu of writing tedious incremental `media-query` breaks.
 
 Setting a percentage value for an element's `height` is often not an option, because that percentage is relative to the `height` of that element's parent. [If the parent's height is not explicitly set, the percentage will yield a height of `0`.](https://stackoverflow.com/questions/1622027/percentage-height-html-5-css) If a situation allows for it, using a percentage `height` for scaling is a great solution, but often this is not an option.
 
-Alternately, percentage `padding` values are relative to the `width` of their parent element, which usually is set. This includes (perhaps unintuitively) vertical padding (`padding-top` and `padding-bottom`). Thus, vertical padding can usually be used to give responsive, scaling height to elements.
+Alternately, percentage `padding` values are relative to the `width` of their parent element, which usually is set. This includes (perhaps unintuitively) vertical padding (`padding-top` and `padding-bottom`). Thus, vertical padding can often be used to give proportionally scaling height to elements, since the parent container `width` generally flexes as the page resizes in responsive layouts.
 
-So, if you want the height of an element to be `120px` when the parent container element is `600px` wide, assign a `padding-top` value to your target element of `20%` (120 is 20% of 600). Do not set an explicit `height` value, let the `padding` set the height. This element will now flex with the rest of the layout, so the height of the element will be `160px` when the parent container is `800px`, and etc. Obviously, you can fine tune this scaling with `media-query`s on top of this method if necessary.
+So, if you want the height of an element to be `120px` when the parent container element is `600px` wide, assign a `padding-top` value to your target element of `20%` (120 is 20% of 600). Do not set an explicit `height` value, let the `padding` set the height. This element will now flex with the rest of the layout, so the height of the element will be `140px` when the parent container is `700px`, `160px` when the parent container is `800px`, and etc. Obviously, you can fine-tune this scaling with `media-query`s on top of this method if necessary.
