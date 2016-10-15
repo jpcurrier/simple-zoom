@@ -1,4 +1,5 @@
 # Simple Zoom
+
 Add mouseover zooming to images. Requires jQuery 1.7+.
 
 ## Setup
