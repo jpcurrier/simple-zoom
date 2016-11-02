@@ -1,10 +1,10 @@
-/* simple zoom */
-.simple-zoom{
+/* zoom image */
+.zoom-image{
 	position: relative;
 	margin: 0;
 	background-size: cover;
 }
-.simple-zoom > figure{
+.zoom-image > figure{
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -18,6 +18,6 @@
 	-webkit-transition: opacity 200ms ease-out;
 	transition: opacity 200ms ease-out;
 }
-.simple-zoom > figure:hover{
+.zoom-image > figure:hover{
 	opacity: 1;
 }

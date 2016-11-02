@@ -4,15 +4,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Simple Zoom</title>
-  <link rel="stylesheet" href="simple-zoom/simple-zoom.css">
+  <title>Zoom Image</title>
+  <link rel="stylesheet" href="zoom-image/zoom-image.css">
   <style>
     /* note: these images can be defined separately for each element if desired */
-    .simple-zoom,
-    .simple-zoom > figure{
+    .zoom-image,
+    .zoom-image > figure{
       background-image: url( img/pillars-of-creation.jpg );
     }
-    .simple-zoom{
+    .zoom-image{
       width: 500px;
     	height: 500px;
     }
@@ -20,13 +20,13 @@
 </head>
 
 <body>
-  <figure class="simple-zoom">
+  <figure class="zoom-image">
     <figure></figure>
   </figure>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="simple-zoom/simple-zoom.js"></script>
+  <script src="zoom-image/zoom-image.js"></script>
   <script>
-    $( '.simple-zoom' ).simpleZoom({
+    $( '.zoom-image' ).zoomImage({
       touch: true
     });
   </script>

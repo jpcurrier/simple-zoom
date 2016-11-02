@@ -1,7 +1,7 @@
-/*! Simple Zoom 1.0.0 | MIT *
- * https://github.com/jpcurrier/simple-zoom !*/
+/*! Zoom Image 1.0.0 | MIT *
+ * https://github.com/jpcurrier/zoom-image !*/
 ( function( $ ){
-	$.fn.simpleZoom = function( options ){
+	$.fn.zoomImage = function( options ){
 
 		// default options
 		var settings = $.extend({
@@ -27,7 +27,7 @@
 						left: -( zoom.naturalWidth - bounds.width ),
 						top: -( zoom.naturalHeight - bounds.height )
 					}
-					
+
 					$image.children().css({
 						'background-position': ( xPercent * maxPan.left ) + 'px ' + ( yPercent * maxPan.top ) + 'px'
 					});

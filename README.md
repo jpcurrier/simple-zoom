@@ -1,23 +1,23 @@
-# Simple Zoom
+# Zoom Image
 
 Add mouseover zooming to images. Requires jQuery 1.7+.
 
 ## Setup
 
-Include jQuery (1.7+) and the Simple Zoom plugin files.
+Include jQuery (1.7+) and the Zoom Image plugin files.
 
 ```html
-<!-- Simple Zoom Stylesheet -->
-<link rel="stylesheet" href="simple-zoom/simple-zoom.css">
+<!-- Zoom Image Stylesheet -->
+<link rel="stylesheet" href="zoom-image/zoom-image.css">
 
-<!-- Simple Zoom jQuery Plugin -->
-<script src="simple-zoom/simple-zoom.js"></script>
+<!-- Zoom Image jQuery Plugin -->
+<script src="zoom-image/zoom-image.js"></script>
 ```
 
-Insert an element classified `simple-zoom` and apply the image that you want to zoom as its `background-image`. This will be used as the initial, "un-zoomed" version of the image, so a smaller version of the image can be used if desired. Inside of that element, include a `figure` element and apply the fully zoomed image as its `background-image`.
+Insert an element classified `zoom-image` and apply the image that you want to zoom as its `background-image`. This will be used as the initial, "un-zoomed" version of the image, so a smaller version of the image can be used if desired. Inside of that element, include a `figure` element and apply the fully zoomed image as its `background-image`.
 
 ```html
-<figure class="simple-zoom" style="background-image: url( img/zoom.png );">
+<figure class="zoom-image" style="background-image: url( img/zoom.png );">
   <figure style="background-image: url( img/zoom.png );"></figure>
 </figure>
 ```
@@ -26,10 +26,10 @@ Call the plugin with jQuery.
 
 ```javascript
 // simple
-$( '.simple-zoom' ).simpleZoom();
+$( '.zoom-image' ).zoomImage();
 
 // custom setting
-$( '.simple-zoom' ).simpleZoom({
+$( '.zoom-image' ).zoomImage({
   touch: true
 });
 ```
@@ -40,7 +40,7 @@ There is only one setting: `touch`. If set `true`, the zooming functionality wor
 
 ## Scaling Image Elements
 
-Note: the following is a general trick, not particular to this plugin. But, it may be relevant, and can be used on the `simple-zoom` element to achieve the results outlined below.
+Note: the following is a general trick, not particular to this plugin. But, it may be relevant, and can be used on the `zoom-image` element to achieve the results outlined below.
 
 If non-`<img>` tags (like `<figure>`s) need to scale proportionally as they resize, like responsive `<img>` elements do (which scale their `width` and `height` proportionally), a `padding` trick can be used in lieu of writing tedious incremental `media-query` breaks.
 
