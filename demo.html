@@ -7,7 +7,6 @@
   <title>Zoom Image</title>
   <link rel="stylesheet" href="zoom-image/zoom-image.css">
   <style>
-    /* note: these images can be defined separately for each element if desired */
     .zoom-image,
     .zoom-image > figure{
       background-image: url( img/pillars-of-creation.jpg );
@@ -23,12 +22,14 @@
   <figure class="zoom-image">
     <figure></figure>
   </figure>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="zoom-image/zoom-image.js"></script>
   <script>
-    $( '.zoom-image' ).zoomImage({
-      touch: true
-    });
+    zoomImage(
+      '.zoom-image',
+      {
+        touch: true
+      }
+    );
   </script>
 </body>
 

@@ -1,38 +1,46 @@
-/*! Zoom Image 1.0.0 | MIT *
- * https://github.com/jpcurrier/zoom-image !*/
-( function( $ ){
-  $.fn.zoomImage = function( options ){
+//! Zoom Image 1.1.0 | MIT
+// https://github.com/jpcurrier/zoom-image
+function zoomImage( el, options ){
+  if( typeof el === 'string' )
+    el = document.querySelectorAll( el );
+  if( el.nodeType === document.ELEMENT_NODE )
+    el = [ el ];
 
-    // default options
-    var settings = $.extend({
-      touch: true
-    }, options );
+  var settings = {
+    touch: true
+  };
+  for( var key in options )
+    if( settings.hasOwnProperty( key ) )
+      settings[ key ] = options[ key ];
 
-    return this.each( function(){
-      var $image = $( this );
+  for( var i = 0; i < el.length; i++ ){
+    var image = el[ i ];
 
-      if( settings.touch || !( 'ontouchstart' in document.documentElement ) ){
-        $image.on( 'mousemove', function( e ){
+    if( settings.touch || !( 'ontouchstart' in document.documentElement ) ){
+      image.addEventListener(
+        'mousemove',
+        function( e ){
           // image + cursor data
           var bounds = {
-            width: $image.outerWidth(),
-            height: $image.outerHeight()
+            width: image.clientWidth,
+            height: image.clientHeight
           },
-            xPercent = ( e.pageX - $image.offset().left ) / bounds.width,
-            yPercent = ( e.pageY - $image.offset().top ) / bounds.height,
+            xPercent = ( e.pageX - image.getBoundingClientRect().left + document.body.scrollLeft ) / bounds.width,
+            yPercent = ( e.pageY - image.getBoundingClientRect().top + document.body.scrollTop ) / bounds.height,
             zoom = new Image();
-          zoom.src = $image.children().css( 'background-image' ).replace(/.*\s?url\([\'\"]?/, '' ).replace( /[\'\"]?\).*/, '' );
-
+          zoom.src = getComputedStyle( image.children[ 0 ] )[ 'background-image' ].replace(/.*\s?url\([\'\"]?/, '' ).replace( /[\'\"]?\).*/, '' );
           var maxPan = {
             left: -( zoom.naturalWidth - bounds.width ),
             top: -( zoom.naturalHeight - bounds.height )
           };
 
-          $image.children().css({
-            'background-position': ( xPercent * maxPan.left ) + 'px ' + ( yPercent * maxPan.top ) + 'px'
-          });
-        } );
-      }
-    });
-  };
-} )( jQuery );
+          // positioning
+          image.children[ 0 ].style.backgroundPosition = ( xPercent * maxPan.left ) + 'px ' + ( yPercent * maxPan.top ) + 'px';
+        }
+      );
+    }
+  }
+}
+
+if( typeof module === 'object' )
+  module.exports = zoomImage;

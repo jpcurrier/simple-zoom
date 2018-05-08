@@ -1,20 +1,25 @@
 # Zoom Image
 
-Add mouseover zooming to images. Requires jQuery 1.7+.
+Add mouseover zooming to images.
+
+Support: Chrome, Firefox, Safari, IE9+. Browsers that do not support CSS3 drop transition effects but retain basic functionality.
 
 ## Setup
 
-Include jQuery (1.7+) and the Zoom Image plugin files.
+For a vanilla javascript version of the plugin, include `zoom-image.js`. For a jQuery version, include `zoom-image.jquery.js` and jQuery 1.7+. In either case, include the styles.
 
 ```html
 <!-- Zoom Image Stylesheet -->
 <link rel="stylesheet" href="zoom-image/zoom-image.css">
 
-<!-- Zoom Image jQuery Plugin -->
+<!-- Zoom Image JavaScript Plugin -->
 <script src="zoom-image/zoom-image.js"></script>
+
+<!-- Zoom Image jQuery Plugin -->
+<script src="zoom-image/zoom-image.jquery.js"></script>
 ```
 
-Insert an element classified `zoom-image` and apply the image that you want to zoom as its `background-image`. This will be used as the initial, "un-zoomed" version of the image, so a smaller version of the image can be used if desired. Inside of that element, include a `figure` element and apply the fully zoomed image as its `background-image`.
+Insert an element classified `zoom-image` and add the image that you want to zoom as its `background-image`. This will be used as the initial, zoomed-out version of the image, so a smaller version of the image can be used if desired. Inside of that element, include a `figure` element and add the fully zoomed image as its `background-image`.
 
 ```html
 <figure class="zoom-image" style="background-image: url( img/zoom.png );">
@@ -22,13 +27,24 @@ Insert an element classified `zoom-image` and apply the image that you want to z
 </figure>
 ```
 
-Call the plugin with jQuery.
+Call the plugin.
 
 ```javascript
-// simple
+// vanilla JavaScript, simple
+zoomImage( '.zoom-image' );
+
+// vanilla JavaScript, custom setting
+zoomImage(
+  '.zoom-image',
+  {
+    touch: true
+  }
+);
+
+// jQuery, simple
 $( '.zoom-image' ).zoomImage();
 
-// custom setting
+// jQuery, custom setting
 $( '.zoom-image' ).zoomImage({
   touch: true
 });
