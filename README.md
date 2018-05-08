@@ -9,13 +9,13 @@ Support: Chrome, Firefox, Safari, IE9+. Browsers that do not support CSS3 drop t
 For a vanilla javascript version of the plugin, include `zoom-image.js`. For a jQuery version, include `zoom-image.jquery.js` and jQuery 1.7+. In either case, include the styles.
 
 ```html
-<!-- Zoom Image Stylesheet -->
+<!-- Zoom Image: Stylesheet -->
 <link rel="stylesheet" href="zoom-image/zoom-image.css">
 
-<!-- Zoom Image JavaScript Plugin -->
+<!-- Zoom Image: Vanilla JavaScript Plugin -->
 <script src="zoom-image/zoom-image.js"></script>
 
-<!-- Zoom Image jQuery Plugin -->
+<!-- Zoom Image: jQuery Plugin -->
 <script src="zoom-image/zoom-image.jquery.js"></script>
 ```
 
