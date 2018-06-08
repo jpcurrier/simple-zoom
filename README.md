@@ -6,20 +6,17 @@ Support: Chrome, Firefox, Safari, IE9+. Browsers that do not support CSS3 drop t
 
 ## Setup
 
-For a vanilla javascript version of the plugin, include `zoom-image.js`. For a jQuery version, include `zoom-image.jquery.js` and jQuery 1.7+. In either case, include the styles.
+Include the Zoom Image stylesheet and script.
 
 ```html
-<!-- Zoom Image: Stylesheet -->
+<!-- Zoom Image Stylesheet -->
 <link rel="stylesheet" href="zoom-image/zoom-image.css">
 
-<!-- Zoom Image: Vanilla JavaScript Plugin -->
+<!-- Zoom Image Script -->
 <script src="zoom-image/zoom-image.js"></script>
-
-<!-- Zoom Image: jQuery Plugin -->
-<script src="zoom-image/zoom-image.jquery.js"></script>
 ```
 
-Insert an element classified `zoom-image` and add the image that you want to zoom as its `background-image`. This will be used as the initial, zoomed-out version of the image, so a smaller version of the image can be used if desired. Inside of that element, include a `figure` element and add the fully zoomed image as its `background-image`.
+Insert an element classified `zoom-image` and add the image that you want to zoom as its `background-image`. This will be used as the initial, zoomed-out version of the image, so a smaller version of the image can be used if desired. Inside of that element, include a `figure` element and add the full-size (zoomed) image as its `background-image`.
 
 ```html
 <figure class="zoom-image" style="background-image: url( img/zoom.png );">
@@ -27,24 +24,24 @@ Insert an element classified `zoom-image` and add the image that you want to zoo
 </figure>
 ```
 
-Call the plugin.
+Call the plugin on the image element.
 
 ```javascript
-// vanilla JavaScript, simple
-zoomImage( '.zoom-image' );
+// vanilla JavaScript with default settings
+var zoomImage = new ZoomImage( '.zoom-image' );
 
-// vanilla JavaScript, custom setting
-zoomImage(
+// vanilla JavaScript with custom settings
+var zoomImage = new ZoomImage(
   '.zoom-image',
   {
     touch: true
   }
 );
 
-// jQuery, simple
+// jQuery (1.7+) with default settings
 $( '.zoom-image' ).zoomImage();
 
-// jQuery, custom setting
+// jQuery (1.7+) with custom settings
 $( '.zoom-image' ).zoomImage({
   touch: true
 });
@@ -56,12 +53,12 @@ There is only one setting: `touch`. If set `true`, the zooming functionality wor
 
 ## Scaling Image Elements
 
-Note: the following is a general trick, not particular to this plugin. But, it may be relevant, and can be used on the `zoom-image` element to achieve the results outlined below.
+The following is a general trick, not particular to this plugin. But, it may be relevant to your Zoom Image project, and can be used on the `zoom-image` element.
 
-If non-`<img>` tags (like `<figure>`s) need to scale proportionally as they resize, like responsive `<img>` elements do (which scale their `width` and `height` proportionally), a `padding` trick can be used in lieu of writing tedious incremental `media-query` breaks.
+If non-`<img>` elements (like `<figure>`s) need to scale proportionally as they resize, like responsive `<img>` elements that scale their `width` and `height` proportionally, the following method can be used in lieu of setting up tedious incremental `media-query` rules or a calculation listener.
 
-Setting a percentage value for an element's `height` is often not an option, because that percentage is relative to the `height` of that element's parent. [If the parent's height is not explicitly set, the percentage will yield a height of `0`.](https://stackoverflow.com/questions/1622027/percentage-height-html-5-css) If a situation allows for it, using a percentage `height` for scaling is a great solution, but often this is not an option.
+Setting a percentage value for an element's `height` is often not an option, because that percentage is relative to the `height` of that element's parent. [If the parent's height is not explicitly set, the percentage will yield a height of `0`.](https://stackoverflow.com/questions/1622027/percentage-height-html-5-css)
 
-Alternately, percentage `padding` values are relative to the `width` of their parent element, which usually is set. This includes (perhaps unintuitively) vertical padding (`padding-top` and `padding-bottom`). Thus, vertical padding can often be used to give proportionally scaling height to elements, since the parent container `width` generally flexes as the page resizes in responsive layouts, which in turn shrinks or stretches percentage based `padding`s of child elements.
+Percentage `padding` values are relative to the `width` of their parent element, which usually is set. This includes (perhaps counterintuitively) vertical padding (`padding-top` and `padding-bottom`). So, vertical padding can be used to set height proportional to a parent element's `width`, which is usually set and scaling in a responsive layout.
 
-So, if you want the height of an element to be `120px` when the parent container element is `600px` wide, assign a `padding-top` value to your target element of `20%` (120 is 20% of 600). Do not set an explicit `height` value, let the `padding` set the height. This element will now flex with the rest of the layout, so the height of the element will be `140px` when the parent container is `700px`, `160px` when the parent container is `800px`, and etc. Obviously, you can fine-tune this scaling with `media-query`s on top of this method if necessary.
+If you want the height of an element to be `120px` when the parent container element is `600px` wide, assign a `padding-top` value to your target element of `20%` (120 is 20% of 600). Do not set an explicit `height` value, let the `padding` set the height. This element will now flex with the rest of the layout, so the height of the element will be `140px` when the parent container is `700px`, `160px` when the parent container is `800px`, and etc. Obviously, you can fine-tune this scaling with `media-query`s on top of this method if necessary.
