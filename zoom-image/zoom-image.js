@@ -31,27 +31,32 @@ ZoomImage.prototype.init = function(){
 
 ZoomImage.prototype.build = function( image ){
   if( this.settings.touch || !( 'ontouchstart' in document.documentElement ) ){
-    image.addEventListener(
-      'mousemove',
-      function( e ){
-        // image + cursor data
-        var bounds = {
-          width: image.clientWidth,
-          height: image.clientHeight
-        },
-          xPercent = ( e.pageX - image.getBoundingClientRect().left + document.body.scrollLeft ) / bounds.width,
-          yPercent = ( e.pageY - image.getBoundingClientRect().top + document.body.scrollTop ) / bounds.height,
-          zoom = new Image();
-        zoom.src = getComputedStyle( image.children[ 0 ] )[ 'background-image' ].replace(/.*\s?url\([\'\"]?/, '' ).replace( /[\'\"]?\).*/, '' );
-        var maxPan = {
-          left: -( zoom.naturalWidth - bounds.width ),
-          top: -( zoom.naturalHeight - bounds.height )
-        };
+    if( !image.getAttribute( 'data-zoom' ) ){ // prevent duplicate listeners
+      image.addEventListener(
+        'mousemove',
+        function( e ){
+          if( image.getAttribute( 'data-zoom' ) === 'true' ){
+            // image + cursor data
+            var bounds = {
+              width: image.clientWidth,
+              height: image.clientHeight
+            },
+              xPercent = ( e.pageX - image.getBoundingClientRect().left + document.body.scrollLeft ) / bounds.width,
+              yPercent = ( e.pageY - image.getBoundingClientRect().top + document.body.scrollTop ) / bounds.height,
+              zoom = new Image();
+            zoom.src = getComputedStyle( image.children[ 0 ] )[ 'background-image' ].replace(/.*\s?url\([\'\"]?/, '' ).replace( /[\'\"]?\).*/, '' );
+            var maxPan = {
+              left: -( zoom.naturalWidth - bounds.width ),
+              top: -( zoom.naturalHeight - bounds.height )
+            };
 
-        // positioning
-        image.children[ 0 ].style.backgroundPosition = ( xPercent * maxPan.left ) + 'px ' + ( yPercent * maxPan.top ) + 'px';
-      }
-    );
+            // positioning
+            image.children[ 0 ].style.backgroundPosition = ( xPercent * maxPan.left ) + 'px ' + ( yPercent * maxPan.top ) + 'px';
+          }
+        }
+      );
+    }
+    image.setAttribute( 'data-zoom', 'true' );
   }
 };
 
