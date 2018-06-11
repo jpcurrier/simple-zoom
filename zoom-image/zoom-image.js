@@ -37,12 +37,14 @@ ZoomImage.prototype.build = function( image ){
         function( e ){
           if( image.getAttribute( 'data-zoom' ) === 'true' ){
             // image + cursor data
-            var bounds = {
-              width: image.clientWidth,
-              height: image.clientHeight
-            },
-              xPercent = ( e.pageX - image.getBoundingClientRect().left + document.body.scrollLeft ) / bounds.width,
-              yPercent = ( e.pageY - image.getBoundingClientRect().top + document.body.scrollTop ) / bounds.height,
+            var scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+              scrollX = window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+              bounds = {
+                width: image.clientWidth,
+                height: image.clientHeight
+              },
+              xPercent = ( e.pageX - ( image.getBoundingClientRect().left + scrollX ) ) / bounds.width,
+              yPercent = ( e.pageY - ( image.getBoundingClientRect().top + scrollY ) ) / bounds.height,
               zoom = new Image();
             zoom.src = getComputedStyle( image.children[ 0 ] )[ 'background-image' ].replace(/.*\s?url\([\'\"]?/, '' ).replace( /[\'\"]?\).*/, '' );
             var maxPan = {
